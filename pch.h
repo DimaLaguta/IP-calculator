@@ -9,6 +9,7 @@
 #ifndef PCH_H
 #define PCH_H
 
-// TODO: add headers that you want to pre-compile here
+#include <string>
+#include <regex>
 
-#endif //PCH_H
+#endif PCH_H
