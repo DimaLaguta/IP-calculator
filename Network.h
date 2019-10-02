@@ -9,16 +9,18 @@ public:
 	Address* addresNetwork;
 	Address* mask;
 	int numSubnets=0;
-private:
+//private:
 	unsigned int numBorrowBits = 0;
-
+	unsigned int* hostParts;
+	int INTmask;
+	int numDifferentHostsParts;
 
 public:
 	Network(char* ipNetwork,int networkMask, int numSubnet);
 	~Network();
 //private:
 	unsigned int calculateBorrowBits();
-
+	unsigned int* calculateAllHostParts();
 };
 
 #endif NETWORK_H
