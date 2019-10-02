@@ -10,6 +10,13 @@ Address::Address(char* address)
 	unsigned int* a = convertToMasInt();
 }
 
+Address::Address(unsigned int mask)
+{
+	addres = genericMask(mask);
+	numOktets = 4;
+	
+}
+
 void Address::Binary(unsigned int x)
 {
 	int sdvig = 8 * sizeof(int) - 1;
@@ -27,6 +34,19 @@ void Address::Binary(unsigned int x)
 
 Address::~Address()
 {
+}
+
+unsigned int Address::genericMask(int mask)
+{
+	unsigned int result = 0;
+	unsigned int bit = 1;
+	bit = bit << 31;
+	for (unsigned int i = 0; i < mask; i++)
+	{
+		result = result | bit;
+		bit = bit >> 1;
+	}
+	return result;
 }
 
 unsigned int* Address::Parse(char* addres)
@@ -73,7 +93,7 @@ char** Address::splitToString(char* addres)
 unsigned int * Address::convertToInt(char ** oktets)
 {
 	unsigned int* INToktets = new unsigned int[numOktets];
-	for (unsigned int i = 0; i < numOktets; i++)
+	for ( int i = 0; i < numOktets; i++)
 	{
 		INToktets[i] = convertCharToInt(oktets[i]);
 	}
@@ -82,7 +102,7 @@ unsigned int * Address::convertToInt(char ** oktets)
 
 void Address::makeIntAddress(unsigned  int * oktets)
 {
-	for (unsigned int i = 0, j = numOktets; i < numOktets; i++,j--)
+	for ( int i = 0, j = numOktets; i < numOktets; i++,j--)
 	{
 		 unsigned int sdvig = 8 * (j - 1);
 		oktets[i] = oktets[i] << sdvig;

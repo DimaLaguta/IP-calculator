@@ -1,19 +1,23 @@
-#pragma once
+#ifndef ADDRESS_H
+#define ADDRESS_H
 class Address
 {
 public:
-	unsigned int addres = 0;
+	 unsigned int addres = 0;
 private:
 	int numOktets = 0;
 
 public:
 	Address(char* address);
+	Address(unsigned int mask);
 
 	static void Binary(unsigned int x);
 	char* charAddres();
 
 	~Address();
 private:
+	unsigned int genericMask(int mask);
+
 	unsigned int* Parse(char* addres);
 	char** splitToString(char* addres);
 	unsigned int* convertToInt(char** oktets);
@@ -28,3 +32,4 @@ private:
 	void reversChar(char* num);
 };
 
+#endif ADDRESS_H
