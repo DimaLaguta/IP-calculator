@@ -1,13 +1,19 @@
-#pragma once
+#ifndef NETWORK_H
+#define NETWORK_H
+
+#include "Address.h"
 class Network
 {
+public:
 	int maxNumUsers = 0;
-	int addresNetwork = 0;
-	int mask = 0;
+	Address* addresNetwork;
+	Address* mask;
+	int numSubnets=0;
 	   	 
 
 public:
-	Network();
+	Network(char* ipNetwork,int networkMask, int numSubnet);
 	~Network();
 };
 
+#endif NETWORK_H
