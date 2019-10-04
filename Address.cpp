@@ -3,6 +3,12 @@
 
 using namespace std;
 
+Address::Address()
+{
+	numOktets = 4;
+
+}
+
 Address::Address(char* address)
 {
 	unsigned int* oktets = Parse(address);
@@ -10,11 +16,17 @@ Address::Address(char* address)
 	unsigned int* a = convertToMasInt();
 }
 
-Address::Address(unsigned int mask)
+Address::Address(int mask)
 {
 	addres = genericMask(mask);
 	numOktets = 4;
 	
+}
+
+Address::Address(unsigned int mask)
+{
+	numOktets = 4;
+
 }
 
 void Address::Binary(unsigned int x)
@@ -46,6 +58,7 @@ unsigned int Address::genericMask(int mask)
 		result = result | bit;
 		bit = bit >> 1;
 	}
+	numBitsMask = mask;
 	return result;
 }
 
@@ -53,12 +66,6 @@ unsigned int* Address::Parse(char* addres)
 {
 	char** CHARoktets = splitToString(addres);
 	unsigned int* oktets = convertToInt(CHARoktets);
-
-	//for (unsigned int i = 0; i < numOktets; i++)
-	//{
-	//	delete[] CHARoktets[i];
-	//}
-	//delete[] CHARoktets;
 	return oktets;
 }
 

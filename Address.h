@@ -4,12 +4,16 @@ class Address
 {
 public:
 	 unsigned int addres = 0;
+	 int numBitsMask = 0;
 private:
 	int numOktets = 0;
 
 public:
+	Address();
 	Address(char* address);
-	Address(unsigned int mask);
+	Address(int mask);//создает маску по кличеству бит
+	Address(unsigned int mask);//создает масску по int
+
 
 	static void Binary(unsigned int x);
 	char* charAddres();
@@ -26,7 +30,6 @@ private:
 
 	unsigned int* convertToMasInt();
 	char** makeCharOktets(unsigned int* oktets);
-	//char** convertIntToChar(unsigned int* oktets);
 	char* uniteOktets(char** oktet);
 	char* convertIntToChar(unsigned int num);
 	void reversChar(char* num);
